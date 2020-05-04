@@ -7,3 +7,6 @@ from flask_login import login_user
 from ..email import mail_message
 from .import auth
 
+@auth.route('/login')
+def login():
+    return render_template('auth/login.html')
