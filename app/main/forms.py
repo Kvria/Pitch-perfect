@@ -7,3 +7,10 @@ from .. import db
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
+
+class ReviewForm(FlaskForm):
+
+    title = StringField('Review title',validators=[Required()])
+    review = TextAreaField('Pitch review', validators=[Required()])
+    submit = SubmitField('Submit')
+
