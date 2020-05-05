@@ -14,3 +14,8 @@ class ReviewForm(FlaskForm):
     review = TextAreaField('Pitch review', validators=[Required()])
     submit = SubmitField('Submit')
 
+class PitchForm(FlaskForm):
+
+    category = StringField('Review title',validators=[Required()])
+    pitch = TextAreaField('Pitch ', validators=[Required()])
+    submit = SubmitField('Submit')
