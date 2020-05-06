@@ -3,7 +3,7 @@ from . import main
 from .forms import ReviewForm,UpdateProfile
 from ..models import User
 from .. import db
-from flask_login import login_required, current_user
+# from flask_login import login_required, current_user
 # import markdown2 
 
 @main.route('/')
