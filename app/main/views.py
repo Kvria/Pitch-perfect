@@ -2,12 +2,17 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import ReviewForm,UpdateProfile
 from ..models import User
-from .. import db,photos
+from .. import db
 from flask_login import login_required, current_user
-import markdown2 
+# import markdown2 
+
+@main.route('/')
+def index():
+    return render_template('index.html')
+
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
-@login_required
+# @login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
     if user is None:
@@ -26,7 +31,7 @@ def update_profile(uname):
     return render_template('profile/update.html',form =form)
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
+# @login_required
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()
     if 'photo' in request.files:
