@@ -16,6 +16,6 @@ class ReviewForm(FlaskForm):
 
 class PostForm(FlaskForm):
 
-    category = StringField('Review title',validators=[Required()])
-    pitch = TextAreaField('Pitch ', validators=[Required()])
+    title = StringField('title',validators=[Required()])
+    description = TextAreaField('Pitch', validators=[Required()])
     submit = SubmitField('Submit')
