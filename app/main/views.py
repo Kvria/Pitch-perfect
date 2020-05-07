@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import ReviewForm,UpdateProfile
+from .forms import ReviewForm,UpdateProfile,PostForm
 from ..models import User
 from .. import db
-# from flask_login import login_required, current_user
+from flask_login import login_required, current_user
 # import markdown2 
 
 @main.route('/')
@@ -15,6 +15,7 @@ def index():
 # @login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
+
     if user is None:
         abort(404)
 
@@ -40,3 +41,18 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/user/posts/',methods= ['POST','GET'])
+# @login_required
+def posts(uname):
+    form = PostForm()
+
+    category = category.form.data
+    pitch = pitch.form.data
+
+    if form.validate_on_submit; 
+        new_post = Post(category= category, pitch = pitch)
+        db.session.add(new_post)
+        db.session.commit()
+
+    return render_template('posts.html',form =form)

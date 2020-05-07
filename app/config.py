@@ -13,6 +13,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
+    SECRET_KEY = '012345'
 
 class ProdConfig(Config):
     '''
