@@ -10,4 +10,11 @@ bootstrap
 html
 python
 
+## SET UP INSTRUCTIONS
+1.Create folders with files
+2.Test code using test files
+3.Add styling using bootsrap
+4.Deploying app to Heroku
+
+
 
