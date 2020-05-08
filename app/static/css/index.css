@@ -1,0 +1,23 @@
+p {
+    font-family: 'Dosis', sans-serif;
+    color:  black;
+}
+h1, h3{
+    text-align: center;
+    font-style: italic;
+    color: black;
+    font-family: 'Dosis', sans-serif;
+}
+.home{
+    background-image: url(../photos/home.jpeg);
+    background-size: cover;
+}
+.navbar{
+    color: #73683B;
+}
+body{
+    background-color: #3E5C76;
+}
+.profile{
+    text-align: center;
+}

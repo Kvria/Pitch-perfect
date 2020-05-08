@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import ReviewForm,UpdateProfile,PostForm
-from ..models import User,Post
+from .forms import CommentForm,UpdateProfile,PostForm
+from ..models import User,Post,Comment
 from .. import db
 from flask_login import login_required, current_user
 # import markdown2 
@@ -10,9 +10,17 @@ from flask_login import login_required, current_user
 def index():
     return render_template('index.html')
 
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
-# @login_required
+@login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
 
@@ -32,7 +40,7 @@ def update_profile(uname):
     return render_template('profile/update.html',form =form)
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
-# @login_required
+@login_required
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()
     if 'photo' in request.files:
@@ -50,8 +58,7 @@ def posts():
     title = form.title.data
     description = form.description.data
 
-    all_post = 
-
+    all_posts = Post.query.all()
 
     if form.validate_on_submit():
         new_post = Post(title = title, description = description, user = current_user)
@@ -60,4 +67,22 @@ def posts():
 
         return redirect(url_for('main.posts'))
 
-    return render_template('posts.html',form =form)
+    return render_template('posts.html',form =form, posts = all_posts)
+
+@main.route('/user/<int:post_id>/',methods= ['POST','GET'])
+@login_required
+def comments(post_id):
+    form = CommentForm()
+    post = Post.query.filter_by(id = post_id).first()
+    comment = form.comment.data
+
+    all_comments = Comment.query.filter_by(post_id = post_id).all
+
+    if form.validate_on_submit():
+        new_comment = Comment( comment = comment, user = current_user, post = post)
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return redirect(url_for('main.comments',post_id = post.id))
+
+    return render_template('comments.html',form = form, comments = all_comments)

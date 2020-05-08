@@ -5,13 +5,17 @@
 {% block styles%}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <style>@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');</style>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
 
-        <h1>WOW YOU FINALLY MADE IT TO PATRICIA'S FLASK BOILER PLATE CODE</h1>
-        
+    <div class=" home">
+
+        <br><br><br><br><br><br><br><br><br>
+        <h1>WELCOME TO THE PITCH PROJECT.</h1>
+        <h3>This app allows one to pitch their ideas which can be voted upon and commented by the viewers.</h3>
+        <br><br><br><br><br><br><br><br><br>
     </div>
 
 {% endblock%}

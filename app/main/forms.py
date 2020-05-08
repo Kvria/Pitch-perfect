@@ -8,14 +8,13 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
 
-class ReviewForm(FlaskForm):
+class CommentForm(FlaskForm):
 
-    title = StringField('Review title',validators=[Required()])
-    review = TextAreaField('Pitch review', validators=[Required()])
+    comment = TextAreaField('comment', validators=[Required()])
     submit = SubmitField('Submit')
 
 class PostForm(FlaskForm):
 
-    title = StringField('title',validators=[Required()])
-    description = TextAreaField('Pitch', validators=[Required()])
+    title = StringField('TITLE',validators=[Required()])
+    description = TextAreaField('PITCH', validators=[Required()])
     submit = SubmitField('Submit')
